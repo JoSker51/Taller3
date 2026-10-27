@@ -34,8 +34,9 @@ code(r'''
 # ----------------------------------------
 # 📅 CONSTRUIR LA SERIE ANUAL (datos reales, sin simular)
 # ----------------------------------------
-# El CSV puede estar junto al notebook (Colab) o en la carpeta datos/ del repositorio
-ruta = 'moe_db_anilist_dataset.csv' if os.path.exists('moe_db_anilist_dataset.csv') else '../datos/moe_db_anilist_dataset.csv'
+# El CSV se lee junto al notebook; en Colab, si no se subió, se descarga del repositorio del taller
+ruta = ('moe_db_anilist_dataset.csv' if os.path.exists('moe_db_anilist_dataset.csv')
+        else 'https://raw.githubusercontent.com/JoSker51/Taller3/main/moe_db_anilist_dataset.csv')
 df = pd.read_csv(ruta)
 df = df.dropna(subset=['start_year'])
 df['anio'] = df['start_year'].astype(int)

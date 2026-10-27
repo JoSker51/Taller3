@@ -1,5 +1,7 @@
 # Taller 3 · Series de tiempo — Yomi Level
 
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JoSker51/Taller3/blob/main/Taller3_Series_Tiempo_Yomi_Level.ipynb)
+
 **Aprendizaje Supervisado · Universidad Sergio Arboleda**
 José Santiago González · Oscar Mateo Arrubla · Leonardo Diasgranados · Docente: Hernán Cruz Bueno
 
@@ -23,6 +25,10 @@ José Santiago González · Oscar Mateo Arrubla · Leonardo Diasgranados · Doce
 - Con los 5 modelos de clase, **predecir el cambio** respecto al año anterior (en vez del nivel), usando `lag_2` y una ventana de 5 años, dio el mejor resultado: **SVM, R² 0,78**.
 
 ## Cómo ejecutar
+
+**En Colab:** clic en el botón "Abrir en Colab" y luego *Entorno de ejecución → Ejecutar todas*. No hay que subir nada: el notebook descarga el dataset de este repositorio.
+
+**En local:**
 
 ```bash
 pip install pandas numpy scikit-learn matplotlib xgboost
