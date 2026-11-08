@@ -12,7 +12,7 @@ md(T.INTRO)
 
 code(r'''
 # ----------------------------------------
-# 📦 LIBRERÍAS
+# LIBRERÍAS
 # ----------------------------------------
 import pandas as pd
 import numpy as np
@@ -32,7 +32,7 @@ plt.rcParams['figure.dpi'] = 110
 md(T.SERIE)
 code(r'''
 # ----------------------------------------
-# 📅 CONSTRUIR LA SERIE ANUAL (datos reales, sin simular)
+# CONSTRUIR LA SERIE ANUAL (datos reales, sin simular)
 # ----------------------------------------
 # El CSV se lee junto al notebook; en Colab, si no se subió, se descarga del repositorio del taller
 ruta = ('moe_db_anilist_dataset.csv' if os.path.exists('moe_db_anilist_dataset.csv')
@@ -50,7 +50,7 @@ serie = (df[df['anio'] >= 1954]
 df_ts = serie[['dificultad']].copy()
 
 # ----------------------------------------
-# ➕ CREAR LAGS Y ROLLINGS
+# CREAR LAGS Y ROLLINGS
 # shift(1) antes del rolling: el promedio usa solo los años ANTERIORES, como dice la definición de clase.
 # Sin el shift, el rolling incluiría el mismo año que queremos predecir (fuga de datos).
 # ----------------------------------------
@@ -145,7 +145,7 @@ md(T.HOJA)
 md(T.MODELOS_INTRO)
 code(r'''
 # ----------------------------------------
-# 🎯 VARIABLES Y DIVISIÓN (sin mezclar el orden del tiempo)
+# VARIABLES Y DIVISIÓN (sin mezclar el orden del tiempo)
 # ----------------------------------------
 datos = df_ts.dropna()
 features = ['lag_1', 'rolling_mean_3', 'rolling_std_3']
@@ -187,7 +187,7 @@ tabla(pred_nivel_tabla, y_test)
 ''')
 
 code(r'''
-# 📈 GRÁFICA COMPARATIVA (versión 1: predecir el nivel)
+# GRÁFICA COMPARATIVA (versión 1: predecir el nivel)
 plt.figure(figsize=(12, 5.5))
 plt.plot(y_test.index, y_test.values, label='Real', linewidth=2.5, color='black', marker='o')
 for nombre, p in pred_nivel.items():
@@ -234,7 +234,7 @@ tabla(dict(pred_v3, **{"Ingenuo (= año anterior)": base5}), real5)
 ''')
 
 code(r'''
-# 📋 Resumen: R² de cada modelo en las tres versiones (mismos 14 años de prueba)
+# Resumen: R² de cada modelo en las tres versiones (mismos 14 años de prueba)
 resumen = pd.DataFrame({
     'V1 nivel (lag_1, rm3, rs3)': tabla(pred_nivel_tabla, y_test)['R2'],
     'V2 cambio (lag_1, rm3, rs3)': tabla(pred_cambio_tabla, y_test)['R2'],
@@ -243,7 +243,7 @@ resumen
 ''')
 
 code(r'''
-# ⚠️ Comprobación: ¿qué pasa si el rolling incluye el año que se predice (código de clase sin shift)?
+# Comprobación: ¿qué pasa si el rolling incluye el año que se predice (código de clase sin shift)?
 fuga = pd.DataFrame({'lag_1': df_ts['lag_1'],
                      'rolling_mean_3': df_ts['dificultad'].rolling(3).mean(),
                      'rolling_std_3': df_ts['dificultad'].rolling(3).std(),
@@ -257,7 +257,7 @@ md(T.OBS_FUGA)
 
 md(T.POR_MODELO_INTRO)
 code(r'''
-# 📈 Una gráfica por modelo: real vs. predicción directa del nivel (V1) y predicción del cambio (V3)
+# Una gráfica por modelo: real vs. predicción directa del nivel (V1) y predicción del cambio (V3)
 colores = {"Regresión Lineal": 'royalblue', "Random Forest": 'forestgreen',
            "XGBoost": 'darkorange', "SVM": 'purple', "KNN": 'crimson'}
 for i, (nombre, color) in enumerate(colores.items()):
